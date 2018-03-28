@@ -18,13 +18,23 @@ Use cron tab to schedule this if required:
 corntab -e
 use nano (option 2)
 Add a line to set your schedule
+
 Heres a few examples:
 
-yearly        0 0 1 1 * 
-monthly       0 0 1 * *
-weekly        0 0 * * 0
-daily         0 0 * * *
-hourly        0 * * * *
+yearly
+0 0 1 1 * 
+
+monthly
+0 0 1 * *
+
+weekly
+0 0 * * 0
+
+daily
+0 0 * * *
+
+hourly
+0 * * * *
 
 e.g.
 corntab -e
@@ -42,29 +52,37 @@ python ddns.py -host myname.ddns.net -u myname@someprovider.com -p superstrongpa
 Or edit the script and edit the values in the script save and run:
 
 nano ddns.py
+
 _USERNAME_ = args.username or "Someone@gmail.com"
+
 _PASSWORD_ = args.password or "Somepassword"
+
 _HOST_ = args.hostname or "somethingcool.ddns.net"
+
 
 ## Arguments
 The following can be passed as arguments, without these edit the script.
 e.g. python ddns.py -i 8.8.8.8 -host some.ddns.net
 
-usage: ddns.py [-h] [-i IPADDRESS] [-host HOSTNAME] [-u USERNAME]
-               [-p PASSWORD]
+usage: ddns.py [-h] [-i IPADDRESS] [-host HOSTNAME] [-u USERNAME] [-p PASSWORD]
 
 Script to update No-IP account with WAN IP automatically or pass a manual IP
 
 optional arguments:
-  -h, --help            show this help message and exit
-  -i IPADDRESS, --ipaddress IPADDRESS
-                        Manual IP to provide
-  -host HOSTNAME, --hostname HOSTNAME
-                        Hostname to Parse
-  -u USERNAME, --username USERNAME
-                        Username to parse
-  -p PASSWORD, --password PASSWORD
-                        Password to parse
+-h, --help            
+show this help message and exit
+
+-i IPADDRESS, --ipaddress IPADDRESS
+Manual IP to provide
+
+-host HOSTNAME, --hostname HOSTNAME
+Hostname to Parse
+
+-u USERNAME, --username USERNAME
+Username to parse
+
+-p PASSWORD, --password PASSWORD
+Password to parse
 
 
 
@@ -83,6 +101,9 @@ Feel free to change the log location, file will be created so just needs a valid
 Just wanted a seperate ddns log folder as I am fussy.
 
 #logfile = open('/var/log/ddnslogs/log','a')
+
 #logfile.write(datetime.datetime.now().ctime() + ' | ' + success)
+
 #logfile.close
+
 

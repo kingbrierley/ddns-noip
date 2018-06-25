@@ -6,6 +6,7 @@ import syslog
 import os
 import datetime
 import argparse
+import json
 
 # Parser | Non required | Use ARGS or further down edit the script Vars
 parser = argparse.ArgumentParser(description='Script to update No-IP account with  WAN IP automatically or pass a manual IP')
@@ -16,13 +17,13 @@ parser.add_argument('-p','--password',help='Password to parse', required=False)
 args = parser.parse_args()
 
 # Login | Used for Auth | Required or parsed
-_USERNAME_ = args.username or "YOUREMAIL@YOURDOMAIN.com"
-_PASSWORD_ = args.password or "YOURPASSWORD"
-_HOST_ = args.hostname or "YOURHOSTNAME.ddns.net"
+_USERNAME_ = args.username or "david.m.brierley@gmail.com"
+_PASSWORD_ = args.password or "Disco1002"
+_HOST_ = args.hostname or "discodisco.ddns.net"
 
 # Get current WAN IP | At Some point provider may be down | look for alternative if that happens
-wanip = args.ipaddress or urllib2.urlopen("http://api.enlightns.com/tools/whatismyip/?format=text").read().strip()
-
+wanipjson = args.ipaddress or json.loads(urllib2.urlopen("http://ip.jsontest.com/").read())
+wanip=wanipjson["ip"]
 # Update No-IP Hostname | Print status codes | Remove if need be
 updateddns = requests.get("http://dynupdate.no-ip.com/nic/update?hostname=" + str(_HOST_), auth=(_USERNAME_, _PASSWORD_))
 # Testing | Used for showing response codes | leave commented for now
